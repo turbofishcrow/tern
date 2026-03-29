@@ -270,7 +270,6 @@ function tableHead(data, header = "") {
 // Main application code - load WASM module
 import("./pkg")
   .then((wasm) => {
-    console.log("WASM module loaded successfully!");
     // app state
     const appState = {
       word: null,
