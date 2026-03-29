@@ -32,6 +32,7 @@
 
 use std::iter::IntoIterator;
 
+use itertools::Itertools;
 use serde::Serialize;
 
 use crate::GuideResult;
@@ -730,6 +731,166 @@ pub fn parallelogram_substring_info(
         }
     }
     None
+}
+
+/// Try to find a better basis for a more arbitrary set of lattice points.
+/// If the pitch classes do not form a parallelogram substring,
+/// this still provides a less sheared basis by finding the most common change in max x value between rows
+/// (or y value between columns) and deshearing by that amount.
+pub fn deshear(
+    pitch_classes: &[Vec<i32>],
+    old_basis: &PitchClassLatticeBasis,
+) -> PitchClassLatticeBasis {
+    let mut x_values = pitch_classes.iter().map(|v| v[0]).collect::<Vec<_>>();
+    let mut y_values = pitch_classes.iter().map(|v| v[1]).collect::<Vec<_>>();
+
+    x_values.sort();
+    y_values.sort();
+
+    let x_min = x_values[0];
+    let x_max = x_values[x_values.len() - 1];
+
+    let y_min = y_values[0];
+    let y_max = y_values[y_values.len() - 1];
+
+    if (x_min + 1..=x_max - 1).any(|x| {
+        pitch_classes
+            .iter()
+            .filter(|&v| v[0] == x)
+            .collect::<Vec<_>>()
+            .len()
+            == 1
+    }) {
+        // If any nonperipheral x-coordinate has a singleton
+        //    x x x x x x             =>   x x x x x x
+        //              x x x x x            x x x x x
+        let mut dxs: Vec<i32> = vec![];
+        let mut prev_x_max = pitch_classes
+            .iter()
+            .filter(|v| v[1] == y_min)
+            .map(|v| v[0])
+            .sorted()
+            .last()
+            .unwrap();
+
+        // Walk up in y and get all changes in max x value between rows
+        for y in y_min + 1..=y_max {
+            let this_x_max = pitch_classes
+                .iter()
+                .filter(|v| v[1] == y)
+                .map(|v| v[0])
+                .sorted()
+                .last()
+                .unwrap_or(prev_x_max);
+            dxs.push(this_x_max - prev_x_max);
+            prev_x_max = this_x_max;
+        }
+
+        // Let dx0 := the most common change in max x value
+        // We want to deshear (dx0, 1) to (0, 1), so we want to make the new basis (1, 0), (dx0, 1)
+
+        dxs.sort();
+
+        let mut dx0_count: usize = 1;
+        let mut dx0 = dxs[0];
+
+        let mut curr_dx_count = 1;
+        for i in 0..=dxs.len() - 1 {
+            if i == dxs.len() - 1 || dxs[i + 1] > dxs[i] {
+                if curr_dx_count > dx0_count {
+                    dx0 = dxs[i];
+                    dx0_count = curr_dx_count;
+                }
+                // reset curr_dx_count for next run
+                curr_dx_count = 1;
+            } else {
+                curr_dx_count += 1;
+            }
+        }
+
+        // Now change the basis
+        let PitchClassLatticeBasis {
+            vx: vx_lms,
+            vy: vy_lms,
+        } = old_basis;
+
+        let new_vy = vec![
+            dx0 * vx_lms[0] + vy_lms[0],
+            dx0 * vx_lms[1] + vy_lms[1],
+            dx0 * vx_lms[2] + vy_lms[2],
+        ];
+
+        PitchClassLatticeBasis::from_slices(vx_lms, &new_vy)
+    } else if (y_min + 1..=y_max - 1).any(|y| {
+        pitch_classes
+            .iter()
+            .filter(|&v| v[1] == y)
+            .collect::<Vec<_>>()
+            .len()
+            == 1
+    }) {
+        // If any nonperipheral y-coordinate has a singleton
+        let mut dys: Vec<i32> = vec![];
+        let mut prev_y_max = pitch_classes
+            .iter()
+            .filter(|v| v[0] == x_min)
+            .map(|v| v[1])
+            .sorted()
+            .last()
+            .unwrap();
+
+        // Walk up in x and get all changes in max y value between rows
+        for x in x_min + 1..=x_max {
+            let this_y_max = pitch_classes
+                .iter()
+                .filter(|v| v[0] == x)
+                .map(|v| v[1])
+                .sorted()
+                .last()
+                .unwrap_or(prev_y_max);
+            dys.push(this_y_max - prev_y_max);
+            prev_y_max = this_y_max;
+        }
+
+        // Let dy0 := the most common change in max y value
+        // We want to deshear (1, dy0) to (1, 0), so we want to make the new basis (1, dy0), (0, 1)
+
+        dys.sort();
+
+        let mut dy0_count: usize = 1;
+        let mut dy0 = dys[0];
+
+        let mut curr_dy_count = 1;
+        for i in 0..=dys.len() - 1 {
+            if i == dys.len() - 1 || dys[i + 1] > dys[i] {
+                if curr_dy_count > dy0_count {
+                    dy0 = dys[i];
+                    dy0_count = curr_dy_count;
+                }
+                // reset curr_dy_count for next run
+                curr_dy_count = 1;
+            } else {
+                curr_dy_count += 1;
+            }
+        }
+
+        // Now change the basis
+        let PitchClassLatticeBasis {
+            vx: vx_lms,
+            vy: vy_lms,
+        } = old_basis;
+
+        let new_vx = vec![
+            dy0 * vy_lms[0] + vx_lms[0],
+            dy0 * vy_lms[1] + vx_lms[1],
+            dy0 * vy_lms[2] + vx_lms[2],
+        ];
+
+        PitchClassLatticeBasis::from_slices(&new_vx, vy_lms)
+    } else {
+        // Default: just return the input lattice and basis with no change
+        old_basis.clone()
+    }
 }
 
 #[cfg(test)]

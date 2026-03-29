@@ -169,6 +169,8 @@ use words::maximum_variety_is;
 use words::{CountVector, least_mode, maximum_variety, monotone_lm, monotone_ms, monotone_s0};
 
 use crate::ji::solve_step_sig_fast;
+#[cfg(feature = "wasm")]
+use crate::lattice::deshear;
 use crate::lattice::get_unimodular_basis;
 use crate::monzo::Monzo;
 use crate::words::mos_substitution_scales;
@@ -425,8 +427,13 @@ pub fn word_to_lattice(query: String) -> Result<JsValue, JsValue> {
             let better_basis_rd = better_basis.equave_reduce(&step_sig);
             (coords, better_basis_rd)
         } else {
-            // No better basis found, use the original
-            (pitch_classes, initial_basis)
+            // No better basis found, use deshear()
+            let desheared_basis = lattice::deshear(&pitch_classes, &initial_basis);
+            // Re-project pitch classes using the better basis
+            let (coords, _) = lattice::pitch_classes(&word_in_numbers, &desheared_basis);
+            // Equave reduce the basis
+            let desheared_basis_rd = desheared_basis.equave_reduce(&step_sig);
+            (coords, desheared_basis_rd)
         };
 
         // Convert the basis to Vec<Vec<i16>> for serialization
