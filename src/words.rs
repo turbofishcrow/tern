@@ -491,8 +491,7 @@ where
     }
 }
 
-/// Return the darkest mode of the MOS axby and the bright generator, using the Bresenham line algorithm.
-/// We chose the darkest mode rather than the brightest because this is the mode with brightness == 0.
+/// Return the brightest mode of the MOS axby and the bright generator, using the Bresenham line algorithm.
 /// Bjorklund's algorithm is asymptotically faster, but this Bresenham implementation is faster for
 /// practical MOS sizes.
 pub fn brightest_mos_mode_and_gener_bresenham(
