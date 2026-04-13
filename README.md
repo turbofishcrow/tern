@@ -1,4 +1,4 @@
-A microtonal scale research app chiefly dedicated to ternary scales (scales with three distinct step sizes). It focuses on [aberrismic theory](https://en.xen.wiki/w/Aberrismic_theory), developed by groundfault, inthar, and others.
+A microtonal scale research app chiefly dedicated to ternary scales (scales with three distinct step sizes). It focuses on [aberrismic theory](https://xenreference.com/w/Aberrisma), developed by groundfault, inthar, and others.
 
 ![Front page screenshot](https://raw.githubusercontent.com/turbofishcrow/ternary/main/static/images/front.png)
 
