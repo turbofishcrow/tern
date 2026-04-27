@@ -15,7 +15,7 @@ default = []
 wasm = ["dep:wasm-bindgen", "dep:serde-wasm-bindgen", "dep:web-sys", "dep:console_error_panic_hook"]
 
 [dependencies]
-stacker = "0.1.23"
+stacker = "0.1.24"
 
 itertools = "0.14.0"
 
