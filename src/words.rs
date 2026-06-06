@@ -23,7 +23,7 @@
 //! # Examples
 //!
 //! ```
-//! use ternary::words::{rotate, least_mode, maximum_variety, chirality, Chirality};
+//! use tern::words::{rotate, least_mode, maximum_variety, chirality, Chirality};
 //!
 //! // Represent the diatonic scale as a word: 5 large steps, 2 small steps
 //! let lydian = vec![0, 0, 0, 1, 0, 0, 1];  // L L L s L L s
@@ -89,7 +89,7 @@ impl Subtendable for CountVector<Letter> {
 /// # Examples
 ///
 /// ```
-/// use ternary::words::{chirality, Chirality};
+/// use tern::words::{chirality, Chirality};
 ///
 /// // Achiral: equal to its reversal (as a circular word)
 /// let diatonic = [0, 0, 0, 1, 0, 0, 1];
@@ -120,7 +120,7 @@ pub enum Chirality {
 /// # Examples
 ///
 /// ```
-/// use ternary::words::CountVector;
+/// use tern::words::CountVector;
 ///
 /// // Create from a slice (counts occurrences)
 /// let steps = CountVector::from_slice(&[0, 0, 0, 1, 0, 0, 1]);
@@ -378,7 +378,7 @@ where
 /// # Examples
 ///
 /// ```
-/// use ternary::words::maximum_variety;
+/// use tern::words::maximum_variety;
 ///
 /// // MOS scales have maximum variety 2
 /// let diatonic = [0, 0, 1, 0, 0, 0, 1];
@@ -412,7 +412,7 @@ where
 /// # Examples
 ///
 /// ```
-/// use ternary::words::maximum_variety_is;
+/// use tern::words::maximum_variety_is;
 ///
 /// // MOS scales have maximum variety 2
 /// let diatonic = [0, 0, 1, 0, 0, 0, 1];
@@ -601,7 +601,7 @@ pub fn mos_mode(a: usize, b: usize, brightness: usize) -> Vec<Letter> {
 /// # Examples
 ///
 /// ```
-/// use ternary::words::rotate;
+/// use tern::words::rotate;
 ///
 /// let lydian = vec![0, 0, 0, 1, 0, 0, 1];
 /// let mixolydian = rotate(&lydian, 1);  // Rotate left by 1
@@ -629,7 +629,7 @@ where
 /// # Examples
 ///
 /// ```
-/// use ternary::words::least_mode;
+/// use tern::words::least_mode;
 ///
 /// let ionian = vec![0, 0, 1, 0, 0, 0, 1]; // LLsLLLs
 /// let lydian = vec![0, 0, 0, 1, 0, 0, 1]; // LLLsLLs (lexicographically least mode of diatonic)
@@ -696,7 +696,7 @@ pub fn booth(scale: &[Letter]) -> usize {
 /// # Examples
 ///
 /// ```
-/// use ternary::words::subst;
+/// use tern::words::subst;
 ///
 /// let template = vec![0, 1, 1, 0, 1, 1, 1];
 /// let filler = vec![1, 2];
@@ -732,7 +732,7 @@ pub fn subst(template: &[Letter], x: Letter, filler: &[Letter]) -> Vec<Letter> {
 /// # Examples
 ///
 /// ```
-/// use ternary::words::mos_substitution_scales_one_perm;
+/// use tern::words::mos_substitution_scales_one_perm;
 ///
 /// let only_contains_one_scale = mos_substitution_scales_one_perm(6, 5, 5);
 /// assert_eq!(only_contains_one_scale.len(), 1);
@@ -800,7 +800,7 @@ pub fn mos_substitution_scales(sig: &[usize]) -> Vec<Vec<Letter>> {
 /// # Examples
 ///
 /// ```
-/// use ternary::words::{Letter, is_mos_subst};
+/// use tern::words::{Letter, is_mos_subst};
 ///
 /// let blackdye: Vec<Letter> = vec![2, 0, 1, 0, 2, 0, 1, 0, 2, 0]; // sLmLsLmLsL
 /// assert!(is_mos_subst(&blackdye));
@@ -823,7 +823,7 @@ pub fn is_mos_subst(scale: &[Letter]) -> bool {
 /// # Examples
 ///
 /// ```
-/// use ternary::words::{Letter, is_mos_subst_one_perm};
+/// use tern::words::{Letter, is_mos_subst_one_perm};
 ///
 /// let blackdye: Vec<Letter> = vec![2, 0, 1, 0, 2, 0, 1, 0, 2, 0]; // sLmLsLmLsL
 /// assert!(is_mos_subst_one_perm(&blackdye, 0, 1, 2)); // XLXLXLXLXL is a MOS pattern
@@ -866,7 +866,7 @@ pub fn delete(scale: &[Letter], letter: Letter) -> Vec<Letter> {
 /// # Examples
 ///
 /// ```
-/// use ternary::words::{Letter, is_monotone_mos};
+/// use tern::words::{Letter, is_monotone_mos};
 ///
 /// let diasem_2sr = [0, 1, 0, 2, 0, 1, 0, 2, 0]; // LmLsLmLsL
 /// assert!(is_monotone_mos(&diasem_2sr)); // LXLXLXLXL, XXXsXXXsX, LmLLmLL are all MOSes
@@ -902,7 +902,7 @@ pub fn monotone_s0(scale: &[Letter]) -> bool {
 /// # Examples
 ///
 /// ```
-/// use ternary::words::{Letter, is_pairwise_mos};
+/// use tern::words::{Letter, is_pairwise_mos};
 ///
 /// let diasem_2sr = [0, 1, 0, 2, 0, 1, 0, 2, 0]; // LmLsLmLsL
 /// assert!(is_pairwise_mos(&diasem_2sr)); // LXLXLXLXL, XXXsXXXsX, XmXXXmXXX are all MOSes
@@ -922,7 +922,7 @@ pub fn is_pairwise_mos(scale: &[Letter]) -> bool {
 /// # Examples
 ///
 /// ```
-/// use ternary::words::{Letter, period_pattern};
+/// use tern::words::{Letter, period_pattern};
 ///
 /// let diminished = [0, 1, 0, 1, 0, 1, 0, 1]; // LsLsLsLs
 /// assert_eq!(period_pattern::<Letter>(&diminished), vec![0, 1]);
@@ -958,7 +958,7 @@ where
 /// # Examples
 ///
 /// ```
-/// use ternary::words::{Letter, weak_period_pattern};
+/// use tern::words::{Letter, weak_period_pattern};
 ///
 /// let diminished = [0, 1, 0, 1, 0, 1, 0, 1]; // LsLsLsLs
 /// assert_eq!(weak_period_pattern::<Letter>(&diminished), vec![0, 1]);
@@ -993,7 +993,7 @@ where
 /// # Examples
 ///
 /// ```
-/// use ternary::words::{Letter, rotations};
+/// use tern::words::{Letter, rotations};
 ///
 /// let diatonic = [0, 0, 1, 0, 0, 0, 1]; // LLsLLLs
 /// assert_eq!(rotations::<Letter>(&diatonic).len(), 7);
@@ -1014,7 +1014,7 @@ where
 /// # Examples
 ///
 /// ```
-/// use ternary::words::{Chirality, chirality};
+/// use tern::words::{Chirality, chirality};
 ///
 /// let diasem_2sr = vec![0, 1, 0, 2, 0, 1, 0, 2, 0]; // Reversing step order results in diasem_2sl
 /// assert_eq!(chirality(&diasem_2sr), Chirality::Right);

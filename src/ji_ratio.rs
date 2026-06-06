@@ -11,8 +11,8 @@
 //! # Examples
 //!
 //! ```
-//! use ternary::ji_ratio::RawJiRatio;
-//! use ternary::interval::Dyad;
+//! use tern::ji_ratio::RawJiRatio;
+//! use tern::interval::Dyad;
 //!
 //! // Create ratios
 //! let fifth = RawJiRatio::PYTH_5TH;     // 3/2
@@ -92,8 +92,8 @@ impl std::error::Error for BadJiArith {}
 /// # Examples
 ///
 /// ```
-/// use ternary::ji_ratio::RawJiRatio;
-/// use ternary::interval::{Dyad, JiRatio};
+/// use tern::ji_ratio::RawJiRatio;
+/// use tern::interval::{Dyad, JiRatio};
 ///
 /// // Create and verify reduction to lowest terms
 /// let ratio = RawJiRatio::try_new(6, 4).unwrap();
@@ -352,8 +352,8 @@ impl RawJiRatio {
     /// # Examples
     ///
     /// ```
-    /// use ternary::ji_ratio::RawJiRatio;
-    /// use ternary::interval::JiRatio;
+    /// use tern::ji_ratio::RawJiRatio;
+    /// use tern::interval::JiRatio;
     ///
     /// // Valid ratio, automatically reduced
     /// let ratio = RawJiRatio::try_new(12, 8).unwrap();

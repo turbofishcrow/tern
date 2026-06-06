@@ -13,7 +13,7 @@
 //! # Examples
 //!
 //! ```
-//! use ternary::comb::necklaces_fixed_content;
+//! use tern::comb::necklaces_fixed_content;
 //!
 //! // Generate all ternary scale patterns with 2L, 2m, 1s
 //! let content = [2, 2, 1];  // 2 of letter 0, 2 of letter 1, 1 of letter 2
@@ -108,7 +108,7 @@ fn partitions_rec(n: usize, m: usize) -> Vec<Vec<usize>> {
 /// # Examples
 ///
 /// ```
-/// use ternary::comb::necklaces_fixed_content;
+/// use tern::comb::necklaces_fixed_content;
 ///
 /// // All necklaces with 3 zeros and 2 ones (binary necklaces)
 /// let necklaces = necklaces_fixed_content(&[3, 2]);

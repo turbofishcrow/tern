@@ -1,8 +1,6 @@
 use criterion::{Criterion, criterion_group, criterion_main};
 use std::hint::black_box;
-use ternary::words::{
-    brightest_mos_mode_and_gener_bjorklund, brightest_mos_mode_and_gener_bresenham,
-};
+use tern::words::{brightest_mos_mode_and_gener_bjorklund, brightest_mos_mode_and_gener_bresenham};
 
 fn criterion_benchmark(c: &mut Criterion) {
     c.bench_function("Bjorklund (small)", |b| {

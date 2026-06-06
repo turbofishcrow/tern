@@ -11,8 +11,8 @@
 //! # Examples
 //!
 //! ```
-//! use ternary::{monzo, monzo::Monzo};
-//! use ternary::interval::{Dyad, JiRatio};
+//! use tern::{monzo, monzo::Monzo};
+//! use tern::interval::{Dyad, JiRatio};
 //!
 //! // Create common intervals
 //! let octave = Monzo::OCTAVE;           // 2/1
@@ -64,8 +64,8 @@ type Weighting = fn(Monzo) -> Vectorf64;
 /// # Examples
 ///
 /// ```
-/// use ternary::monzo;
-/// use ternary::interval::JiRatio;
+/// use tern::monzo;
+/// use tern::interval::JiRatio;
 ///
 /// // Empty = unison (1/1)
 /// let unison = monzo![];
@@ -120,7 +120,7 @@ pub enum CantMakeMonzo {
 /// # Creating Monzos
 ///
 /// ```
-/// use ternary::{monzo, monzo::Monzo};
+/// use tern::{monzo, monzo::Monzo};
 ///
 /// // From a ratio (fallible)
 /// let major_third = Monzo::try_new(5, 4).unwrap();
@@ -177,8 +177,8 @@ impl Monzo {
     /// # Examples
     ///
     /// ```
-    /// use ternary::monzo::{Monzo, CantMakeMonzo};
-    /// use ternary::interval::JiRatio;
+    /// use tern::monzo::{Monzo, CantMakeMonzo};
+    /// use tern::interval::JiRatio;
     ///
     /// // Valid ratio within prime limit
     /// let fifth = Monzo::try_new(3, 2).unwrap();

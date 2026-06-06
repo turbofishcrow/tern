@@ -1,5 +1,5 @@
 [package]
-name = "ternary"
+name = "tern"
 version = "0.1.0"
 authors = ["turbofishcrow <serotoceprafen@gmail.com>"]
 edition = "2024"

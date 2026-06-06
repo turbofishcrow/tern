@@ -1,6 +1,8 @@
-A microtonal scale research app chiefly dedicated to ternary scales (scales with three distinct step sizes). It focuses on [aberrismic theory](https://xenreference.com/w/Aberrisma), developed by groundfault, inthar, and others.
+**Tern** is a microtonal scale research app chiefly dedicated to ternary scales (scales with three distinct step sizes). It focuses on [aberrismic theory](https://xenreference.com/w/Aberrisma), developed by groundfault, inthar, and others.
 
-![Front page screenshot](https://raw.githubusercontent.com/turbofishcrow/ternary/main/static/images/front.png)
+Terns are seabirds in the taxon Sterninae. The naming continues the bird-themed naming of apps like groundfault's TuneLoon.
+
+![Front page screenshot](https://raw.githubusercontent.com/turbofishcrow/tern/main/static/images/front.png)
 
 # How to build and run
 

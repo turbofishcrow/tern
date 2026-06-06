@@ -22,8 +22,8 @@
 //! # Examples
 //!
 //! ```
-//! use ternary::ji::{mode, step_form, cumulative_form, is_cs_ji_scale};
-//! use ternary::ji_ratio::RawJiRatio;
+//! use tern::ji::{mode, step_form, cumulative_form, is_cs_ji_scale};
+//! use tern::ji_ratio::RawJiRatio;
 //!
 //! // Convert between cumulative and step forms
 //! let zarlino = vec![
@@ -89,8 +89,8 @@ pub fn specified_odd_limit(odds: &[u32]) -> Vec<RawJiRatio> {
 /// # Examples
 ///
 /// ```
-/// use ternary::ji::odd_limit;
-/// use ternary::ji_ratio::RawJiRatio;
+/// use tern::ji::odd_limit;
+/// use tern::ji_ratio::RawJiRatio;
 /// use itertools::Itertools;
 ///
 /// // The 5-odd-limit contains ratios like 3/2, 5/4, 5/3, etc.
@@ -284,8 +284,8 @@ pub fn solve_step_sig_slow(
 /// # Examples
 ///
 /// ```
-/// use ternary::ji::spectrum;
-/// use ternary::ji_ratio::RawJiRatio;
+/// use tern::ji::spectrum;
+/// use tern::ji_ratio::RawJiRatio;
 ///
 /// // Pythagorean pentatonic: 1/1 9/8 81/64 3/2 27/16 2/1
 /// let pentatonic = vec![
@@ -392,8 +392,8 @@ pub fn ji_scale_modes(scale: &[RawJiRatio]) -> Vec<Vec<RawJiRatio>> {
 /// # Examples
 ///
 /// ```
-/// use ternary::ji::harmonic_mode;
-/// use ternary::ji_ratio::RawJiRatio;
+/// use tern::ji::harmonic_mode;
+/// use tern::ji_ratio::RawJiRatio;
 ///
 /// // Harmonic mode 4 is the 4:5:6:7:8 chord
 /// let mode_4 = harmonic_mode(4).unwrap();
@@ -436,8 +436,8 @@ pub fn harmonic_mode_no_oct(mode_num: u32) -> Result<Vec<RawJiRatio>, ScaleError
 /// # Examples
 ///
 /// ```
-/// use ternary::ji::is_cs_ji_scale;
-/// use ternary::ji_ratio::RawJiRatio;
+/// use tern::ji::is_cs_ji_scale;
+/// use tern::ji_ratio::RawJiRatio;
 ///
 /// // Pythagorean major scale is CS
 /// let pyth_major = vec![
@@ -494,8 +494,8 @@ pub fn is_cs_ji_scale(arr: &[RawJiRatio]) -> bool {
 /// # Examples
 ///
 /// ```
-/// use ternary::ji::gs_scale;
-/// use ternary::ji_ratio::RawJiRatio;
+/// use tern::ji::gs_scale;
+/// use tern::ji_ratio::RawJiRatio;
 ///
 /// // Build a pentatonic scale by stacking 3/2 fifths
 /// let generators = [RawJiRatio::try_new(3, 2).unwrap()];

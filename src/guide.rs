@@ -13,7 +13,7 @@
 //! # Examples
 //!
 //! ```
-//! use ternary::guide::{guide_frames, GuideFrame};
+//! use tern::guide::{guide_frames, GuideFrame};
 //!
 //! // Diasem scale: 5L 2m 2s
 //! let diasem = [0, 1, 0, 2, 0, 1, 0, 2, 0];
@@ -140,8 +140,8 @@ fn guided_gs_list_for_subscale(subscale: &[CountVector<usize>]) -> Vec<Vec<Count
 /// # Examples
 ///
 /// ```
-/// use ternary::guide::{guide_frames, GuideFrame};
-/// use ternary::words::CountVector;
+/// use tern::guide::{guide_frames, GuideFrame};
+/// use tern::words::CountVector;
 ///
 /// // Diasem has a simple guide frame with 2 generators
 /// let diasem = [0, 1, 0, 2, 0, 1, 0, 2, 0];
@@ -394,8 +394,8 @@ impl GuideFrame {
 /// # Examples
 ///
 /// ```
-/// use ternary::words::{Letter, CountVector};
-/// use ternary::guide::{guide_frames, GuideFrame};
+/// use tern::words::{Letter, CountVector};
+/// use tern::guide::{guide_frames, GuideFrame};
 ///
 /// // Diamech (Right-handed): LsLmLsLsLms
 /// let diamech_4sr = vec![0, 2, 0, 1, 0, 2, 0, 2, 0, 1, 2];

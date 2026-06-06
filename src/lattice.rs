@@ -18,7 +18,7 @@
 //! # Examples
 //!
 //! ```
-//! use ternary::lattice::try_pitch_class_lattice;
+//! use tern::lattice::try_pitch_class_lattice;
 //!
 //! // Diasem scale
 //! let diasem = [0, 1, 0, 2, 0, 1, 0, 2, 0];
@@ -55,7 +55,7 @@ use crate::words::CountVector;
 /// # Examples
 ///
 /// ```
-/// use ternary::lattice::PitchClassLatticeBasis;
+/// use tern::lattice::PitchClassLatticeBasis;
 ///
 /// // A basis with two generators
 /// let basis = PitchClassLatticeBasis::from_slices(&[1, 1, 0], &[0, 1, 1]);
@@ -257,7 +257,7 @@ pub fn pitch_classes(
 /// # Examples
 ///
 /// ```
-/// use ternary::lattice::try_pitch_class_lattice;
+/// use tern::lattice::try_pitch_class_lattice;
 ///
 /// let diasem = [0, 1, 0, 2, 0, 1, 0, 2, 0];
 /// if let Some((coords, _basis)) = try_pitch_class_lattice(&diasem) {

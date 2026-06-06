@@ -16,9 +16,9 @@
 //! # Examples
 //!
 //! ```
-//! use ternary::equal::{gpval, direct_approx, relative_error};
-//! use ternary::ji_ratio::RawJiRatio;
-//! use ternary::monzo;
+//! use tern::equal::{gpval, direct_approx, relative_error};
+//! use tern::ji_ratio::RawJiRatio;
+//! use tern::monzo;
 //!
 //! // Get the patent val for 12edo
 //! let val_12 = gpval(12.0);
@@ -92,8 +92,8 @@ impl AddAssign for Val {
 /// # Examples
 ///
 /// ```
-/// use ternary::equal::gpval;
-/// use ternary::monzo;
+/// use tern::equal::gpval;
+/// use tern::monzo;
 ///
 /// // 12edo patent val: <12 19 28 34|
 /// let val_12 = gpval(12.0);
@@ -163,8 +163,8 @@ pub fn is_in_tuning_range(
 /// # Examples
 ///
 /// ```
-/// use ternary::equal::ed_tunings_for_ternary;
-/// use ternary::ji_ratio::RawJiRatio;
+/// use tern::equal::ed_tunings_for_ternary;
+/// use tern::ji_ratio::RawJiRatio;
 ///
 /// // Find ED tunings for 5L2m3s (blackdye) up to 31edo
 /// // with smallest step between 20 and 60 cents
@@ -234,7 +234,7 @@ pub fn odd_limit_l2_error(odd: u32, edo: f64) -> f64 {
 /// # Examples
 ///
 /// ```
-/// use ternary::{val, monzo};
+/// use tern::{val, monzo};
 ///
 /// // Create 12edo 5-limit val: <12 19 28|
 /// let val_12 = val![12, 19, 28];
