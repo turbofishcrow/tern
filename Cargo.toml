@@ -21,10 +21,6 @@ itertools = "0.15.0"
 
 num-traits = "0.2.19"
 num-integer = "0.1.46"
-num-rational = "0.4.2"
-num-bigint = "0.5.1"
-
-thiserror = "2.0.18"
 
 serde = { version = "1.0.208", features = ["derive"] }
 
@@ -33,7 +29,7 @@ wasm-bindgen = { version = "0.2.106", optional = true }
 serde-wasm-bindgen = { version = "0.6.5", optional = true }
 console_error_panic_hook = { version = "0.1.7", optional = true }
 web-sys = { version = "0.3", features = ['Document', 'Element', 'HtmlElement', 'Node', 'Window'], optional = true }
-wasm-bindgen-test = "0.3.34"
+# wasm-bindgen-test = "0.3.34"
 
 [dev-dependencies]
 wasm-bindgen-test = "0.3.34"

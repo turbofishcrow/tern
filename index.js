@@ -1090,6 +1090,7 @@ stack()`
               getSUpper(),
             );
             const scales = sigResultData["profiles"].map((j) => j["word"]);
+            const stepNestedScale = sigResultData["step_nested"];
             const latticeBases = sigResultData["profiles"].map(
               (j) => j["lattice_basis"],
             );
@@ -1097,6 +1098,13 @@ stack()`
 
             const jiTunings = sigResultData["ji_tunings"];
             const edTunings = sigResultData["ed_tunings"];
+            const si = document.getElementById("sig-info");
+            si.innerHTML = `<a href="https://xenreference.com/w/Step-nested_scale" target="_blank">Step-nested scale</a>: `;
+            if (!stepNestedScale) {
+              si.innerHTML += `None`;
+            } else {
+              si.innerHTML += `<b><a href="?word=${stepNestedScale}">${stepNestedScale}</a></b>`;
+            }
             let letters;
             if (arity === 3) {
               letters = ["L", "m", "s"];

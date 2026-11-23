@@ -113,6 +113,7 @@ pub mod matrix;
 pub mod monzo;
 pub mod interpretations;
 pub mod primes;
+pub mod step_nested;
 pub mod vector;
 pub mod words;
 
@@ -229,6 +230,7 @@ pub struct ScaleProfile {
 #[derive(Debug, Serialize)]
 pub struct SigResult {
     profiles: Vec<ScaleProfile>,
+    step_nested: Option<String>, // The unique step-nested scale pattern if it exists
     ji_tunings: Vec<Vec<String>>,
     ed_tunings: Vec<Vec<String>>,
 }
@@ -708,6 +710,8 @@ pub fn sig_result(
         .into_iter()
         .filter(|scale| filtering_cond(scale))
         .collect::<Vec<_>>();
+    let sn = step_nested::step_nested_ternary(step_sig[0], step_sig[1], step_sig[2])
+        .map(|numbers| numbers_to_string(&numbers));
     Ok(to_value(&SigResult {
         profiles: scales
             .iter()
@@ -715,6 +719,7 @@ pub fn sig_result(
             .sorted_by(|scale1, scale2| sort_scales(scale1, scale2))
             .map(|scale| word_to_profile(scale))
             .collect(),
+        step_nested: sn,
         ji_tunings: sig_to_ji_tunings(&step_sig, equave, s_lower, s_upper),
         ed_tunings: sig_to_ed_tunings(&step_sig, equave, ed_bound, s_lower, s_upper),
     })?)
